@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace InventoryProj
 {
-    class PersistentStore
+    public class PersistentStore : Store
     {
+        public PersistentStore()
+        {
+            GetAllProduct = new List<Product>();
+        }
+        protected override void StoreProduct(Product product)
+        {
+            GetAllProduct.Add(product);
+            
+            
+        }
+        
+        
     }
 }

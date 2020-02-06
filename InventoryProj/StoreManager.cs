@@ -8,33 +8,53 @@ namespace InventoryProj
 {
     class StoreManager
     {
-        private StorageCapable storage;
+        public StorageCapable storage;
+        
 
         public StoreManager(StorageCapable Storage)
         {
-            this.storage = Storage;
+            
         }
         public void addStorage(StorageCapable store)
         {
-
+            storage = store;
         }
         public void addCDProduct(string name, int price, int tracks)
         {
-
+            storage.storeCDProduct(name, price, tracks);
         }
         public void addBookProduct(string name, int price, int tracks)
         {
-
+            storage.storeBookProduct(name, price, tracks);
         }
         public string listProducts()
         {
-            string juststring = "juststring";
-            return juststring;
+            string productsList = "";
+            foreach(Product product in storage.GetAllProduct)
+            {
+                if(product.GetType() == typeof(CDProducts))
+                {
+                    CDProducts cdproduct = (CDProducts)product;
+                    productsList += cdproduct.ToString() + "\n";
+                    
+                }
+                else if(product.GetType() == typeof(BookProducts))
+                {
+                    BookProducts bookproduct = (BookProducts)product;
+                    productsList += bookproduct.ToString() + "\n";
+                }
+            }
+            return productsList;
         }
         public int getTotalProductPrice()
         {
-            int justint = 0;
-            return justint;
+            int totalPrice = 0;
+            foreach (Product product in storage.GetAllProduct)
+            {
+                totalPrice += product.Price;
+
+            }
+            return totalPrice;
         }
     }
 }
