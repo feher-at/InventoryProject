@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using System.Xml.Serialization;
+
 
 
 namespace InventoryProj
@@ -18,20 +18,7 @@ namespace InventoryProj
         public Store()
         { }
         public List<Product> GetAllProduct { get; set; }
-        public void SaveToXml(Product product)
-        {
-            string filepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Inventory_project.xml");
-           
-            using (Stream fs = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(Store));
-                serializer.Serialize(fs, this);
-            }
-            
-            
-                
-            
-        }
+        public abstract void Savefile(Product product);
         protected abstract void StoreProduct(Product product);
 
         protected Product createProduct(string type, string name, int price, int size)
@@ -59,7 +46,7 @@ namespace InventoryProj
         public void store(Product product)
         {
             StoreProduct(product);
-            SaveToXml(product);
+            Savefile(product);
             
         }
         

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BookProducts.cs" />
     <Compile Include="CDProducts.cs" />
+    <Compile Include="MyOtherStore.cs" />
     <Compile Include="PersistentStore.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />

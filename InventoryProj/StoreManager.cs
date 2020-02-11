@@ -9,6 +9,7 @@ namespace InventoryProj
     class StoreManager
     {
         public StorageCapable storage;
+
         
 
         public StoreManager(StorageCapable Storage)
